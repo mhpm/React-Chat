@@ -16,7 +16,13 @@ const App = () => {
         <Header />
         <div className="container" style={{ height: 100 + "vh" }}>
           <Switch>
-            <Route exact path="/" component={Login}></Route>
+            <Route
+              exact
+              path={
+                process.env.NODE_ENV === "production" ? "/react-chat/" : "/"
+              }
+              component={Login}
+            ></Route>
             <Route path="/register" component={Register}></Route>
             <ProtectedRoute path="/chat" component={Chat}></ProtectedRoute>
             <ProtectedRoute path="/users" component={Users}></ProtectedRoute>
