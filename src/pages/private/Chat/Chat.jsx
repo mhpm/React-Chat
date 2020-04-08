@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react"
-//import AuthContext from "context/auth/authContext"
-//import { animateScroll } from "react-scroll"
-//import socket from "utils/socket"
+import AuthContext from "context/auth/authContext"
+import { Redirect } from "react-router-dom"
+import { animateScroll } from "react-scroll"
+import socket from "utils/socket"
 import styled from "styled-components"
 import Message from "./components/Message"
 import Input from "components/Input"
@@ -20,65 +21,73 @@ const Display = styled.div`
 `
 
 const Chat = () => {
-  //const { user } = useContext(AuthContext)
+  const { user, isLogged } = useContext(AuthContext)
   const [message, setMessage] = useState("")
   const [list, setList] = useState([])
 
-  // useEffect(() => {
-  //   socket.on("message", (message) => {
-  //     setList((oldArray) => [...oldArray, { ...message }])
-  //     scrollToBottom()
-  //   })
-  // }, [])
+  useEffect(() => {
+    socket.on("message", (message) => {
+      setList((oldArray) => [...oldArray, { ...message }])
+      scrollToBottom()
+    })
+  }, [])
 
-  // const scrollToBottom = () => {
-  //   animateScroll.scrollToBottom({
-  //     containerId: "display",
-  //   })
-  // }
+  const scrollToBottom = () => {
+    animateScroll.scrollToBottom({
+      containerId: "display",
+    })
+  }
 
   const sendMessage = (e) => {
     e.preventDefault()
-    // if (message.length > 0) {
-    //   socket.emit("chatMessage", user, message)
-    //   setMessage("")
-    // }
+    if (message.length > 0) {
+      socket.emit("chatMessage", user, message)
+      setMessage("")
+    }
   }
 
-  return (
-    <div className="h-100 d-flex justify-content-center align-items-center w-100">
-      <div className="row" style={{ width: 100 + "%" }}>
-        <div className="col-md">
-          <div className="row">
-            <div className="col-md">
-              <Display id="display">
-                <Message list={list} />
-              </Display>
-            </div>
-          </div>
-          <form onSubmit={sendMessage} className="pt-4">
+  if (!isLogged) {
+    return (
+      <Redirect
+        to={process.env.NODE_ENV === "production" ? "/react-chat/" : "/"}
+      />
+    )
+  } else {
+    return (
+      <div className="h-100 d-flex justify-content-center align-items-center w-100">
+        <div className="row" style={{ width: 100 + "%" }}>
+          <div className="col-md">
             <div className="row">
-              <div className="col-md-10 col-sm-10">
-                <div className="form-group">
-                  <Input
-                    type="text"
-                    value={message}
-                    placeholder="Type message..."
-                    onChange={(e) => setMessage(e.target.value)}
-                  />
+              <div className="col-md">
+                <Display id="display">
+                  <Message list={list} />
+                </Display>
+              </div>
+            </div>
+            <form onSubmit={sendMessage} className="pt-4">
+              <div className="row">
+                <div className="col-md-10 col-sm-10">
+                  <div className="form-group">
+                    <Input
+                      type="text"
+                      value={message}
+                      placeholder="Type message..."
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="col">
+                  <Button primary>
+                    <i className="fas fa-paper-plane fa-sm"></i>
+                  </Button>
                 </div>
               </div>
-              <div className="col">
-                <Button primary>
-                  <i className="fas fa-paper-plane fa-sm"></i>
-                </Button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default Chat

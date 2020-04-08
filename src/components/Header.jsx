@@ -8,11 +8,11 @@ const Header = () => {
 
   if (isLogged)
     return (
-      <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#!">
-          <img src={logo} width={25} alt="" srcset="" className="ml-3" />
+      <nav className="navbar navbar-dark bg-dark">
+        <a className="navbar-brand" href="#!">
+          <img src={logo} width={25} alt="logo" className="ml-3" />
         </a>
-        <div class="row" style={{ width: 300 }}>
+        <div className="row" style={{ width: 300 }}>
           <div className="col-md-6 text-right align-self-center">
             <span className="text-secondary">{user.first_name}</span>
           </div>
@@ -20,7 +20,7 @@ const Header = () => {
             <Button
               dark
               onClick={logOut}
-              class="my-2 my-sm-0"
+              className="my-2 my-sm-0"
               style={{ height: 40, width: 120 }}
             >
               Sing out
