@@ -8,16 +8,17 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         isLogged ? (
           <Component {...props} />
         ) : (
           <Redirect
             to={{
-              pathname: "/",
+              pathname:
+                process.env.NODE_ENV === "production" ? "/react-chat/" : "/",
               state: {
-                from: props.location
-              }
+                from: props.location,
+              },
             }}
           />
         )
