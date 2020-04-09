@@ -20,7 +20,7 @@ const Display = styled.div`
 `
 
 const Chat = () => {
-  const { user, isLogged } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const [message, setMessage] = useState("")
   const [list, setList] = useState([])
 
@@ -41,6 +41,9 @@ const Chat = () => {
     e.preventDefault()
     if (message.length > 0) {
       socket.emit("chatMessage", user, message)
+      console.log("====================================")
+      console.log(message)
+      console.log("====================================")
       setMessage("")
     }
   }
