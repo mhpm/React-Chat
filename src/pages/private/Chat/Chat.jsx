@@ -9,7 +9,7 @@ import Button from "components/Button"
 
 const Display = styled.div`
   width: 100%;
-  height: 800px;
+  height: 500px;
   padding: 30px;
   background-color: #f0f0f0;
   border-radius: 8px;
@@ -49,8 +49,8 @@ const Chat = () => {
   }
 
   return (
-    <div className="h-100 d-flex justify-content-center align-items-center w-100">
-      <div className="row" style={{ width: 100 + "%" }}>
+    <div className="h-100 d-flex justify-content-center w-100">
+      <div className="row mt-5" style={{ width: 100 + "%" }}>
         <div className="col-md">
           <div className="row">
             <div className="col-md">
@@ -59,7 +59,7 @@ const Chat = () => {
               </Display>
             </div>
           </div>
-          <form onSubmit={sendMessage} className="pt-4">
+          <form onSubmit={sendMessage} className="pt-4 mb-5">
             <div className="row">
               <div className="col-md-10 col-sm-10">
                 <div className="form-group">

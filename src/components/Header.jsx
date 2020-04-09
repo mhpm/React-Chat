@@ -12,11 +12,11 @@ const Header = () => {
         <a className="navbar-brand" href="#!">
           <img src={logo} width={25} alt="logo" className="ml-3" />
         </a>
-        <div className="row" style={{ width: 300 }}>
-          <div className="col-md-6 text-right align-self-center">
+        <div className="row">
+          <div className="col-md col-sm-3 text-right align-self-center d-none d-sm-block">
             <span className="text-secondary">{user.first_name}</span>
           </div>
-          <div className="col-md">
+          <div className="col-md col-sm">
             <Button
               dark
               onClick={logOut}

@@ -21,15 +21,15 @@ const Login = () => {
   } else {
     return (
       <>
-        <div className="h-100 d-flex flex-column justify-content-center align-items-center">
-          <div className="row" style={{ marginBottom: 100 }}>
+        <div className="h-100 d-flex flex-column justify-content-center">
+          <div className="row" style={{ marginBottom: 70 }}>
             <div className="col-md text-center">
               <img src={logo} width={120} alt="logo" />
             </div>
           </div>
-          <div className="row">
-            <div className="col-md">
-              <form onSubmit={(e) => handlerLogin(e)} style={{ width: 400 }}>
+          <div className="row d-flex justify-content-center">
+            <div className="col-md-6 col-sm-12">
+              <form onSubmit={(e) => handlerLogin(e)}>
                 <div className="form-group">
                   <Input
                     type="text"
@@ -44,9 +44,13 @@ const Login = () => {
               </form>
             </div>
           </div>
-          <Link to="/register" className="pt-3 text-secondary">
-            Don't have an account? Register.
-          </Link>
+          {/* <div className="row">
+            <div className="col-md text-center mt-4">
+              <Link to="/register" className="text-secondary">
+                Don't have an account? Register.
+              </Link>
+            </div>
+          </div> */}
         </div>
       </>
     )
