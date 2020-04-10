@@ -41,9 +41,6 @@ const Chat = () => {
     e.preventDefault()
     if (message.length > 0) {
       socket.emit("chatMessage", user, message)
-      console.log("====================================")
-      console.log(message)
-      console.log("====================================")
       setMessage("")
     }
   }
