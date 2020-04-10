@@ -6,14 +6,14 @@ export default (state, action) => {
       return {
         ...state,
         user: action.user,
-        isLogged: true,
+        isAuthenticated: true,
         loading: false,
       }
     case LOG_OUT:
       return {
         ...state,
-        user: {},
-        isLogged: false,
+        user: null,
+        isAuthenticated: false,
       }
     case SET_LOADING:
       return {

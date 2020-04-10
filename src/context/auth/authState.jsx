@@ -6,9 +6,11 @@ import { SET_LOADING, LOG_USER, LOG_OUT } from "../types"
 
 const AuthState = (props) => {
   const initialState = {
-    user: {},
-    isLogged: false,
+    token: null,
+    user: null,
+    isAuthenticated: false,
     loading: false,
+    error: null,
   }
 
   const [state, dispatch] = useReducer(AuthReducer, initialState)
@@ -32,9 +34,11 @@ const AuthState = (props) => {
   return (
     <AuthContext.Provider
       value={{
+        token: state.token,
         user: state.user,
-        isLogged: state.isLogged,
+        isAuthenticated: state.isAuthenticated,
         loading: state.loading,
+        error: state.error,
         logUser,
         logOut,
       }}

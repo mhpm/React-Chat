@@ -28,7 +28,7 @@ const StuledButton = styled.button`
   ${(props) =>
     props.dark &&
     css`
-      background-image: linear-gradient(120deg, #6f6f6f 0%, #303030 100%);
+      background-image: linear-gradient(120deg, #6f6f6f 0%, #4d4d4d 100%);
     `};
 `
 

@@ -4,11 +4,12 @@ import styled from "styled-components"
 
 const Container = styled.div`
   width: fit-content;
-  background-color: #7ec6d2;
+  background-color: white;
   padding: 15px;
-  border-radius: 3px;
+  border-radius: 70px;
+  padding-left: 35px;
+  padding-right: 35px;
 `
-
 // const Img = styled.img`
 //   position: absolute;
 //   width: 30px;
@@ -23,14 +24,10 @@ const Message = ({ list }) => {
   const renderHeader = (item) => {
     return (
       <span>
-        <span>
-          <b style={{ color: "#1e606b", fontSize: 14 }}>
-            {item.user.first_name}
-          </b>{" "}
-        </span>
-        <span style={{ color: "#1e606b", marginLeft: 6, fontSize: 14 }}>
-          {item.time}
-        </span>
+        <b style={{ color: "#4f585a", fontSize: 16 }}>
+          {item.user.first_name}:
+        </b>
+        <br />
       </span>
     )
   }
@@ -70,9 +67,15 @@ const Message = ({ list }) => {
                 : ""
             }`}
           >
-            <Container className="mb-1">
-              {conditionalHeader(item, index, arr)}
-              <div style={{ color: "white" }}>{item.msg}</div>
+            <Container className="mb-2">
+              <div style={{ color: "#a6a6a6" }}>
+                {conditionalHeader(item, index, arr)}
+                {item.msg}
+
+                <span style={{ color: "#676868", marginLeft: 6, fontSize: 12 }}>
+                  {item.time}
+                </span>
+              </div>
             </Container>
           </div>
         ))}

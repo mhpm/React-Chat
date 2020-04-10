@@ -4,9 +4,9 @@ import AuthContext from "../context/auth/authContext"
 import logo from "assets/logo.png"
 
 const Header = () => {
-  const { isLogged, logOut, user } = useContext(AuthContext)
+  const { isAuthenticated, logOut, user } = useContext(AuthContext)
 
-  if (isLogged)
+  if (isAuthenticated)
     return (
       <nav className="navbar navbar-dark bg-dark">
         <a className="navbar-brand" href="#!">

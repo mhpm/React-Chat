@@ -6,7 +6,7 @@ import Button from "components/Button"
 import logo from "assets/logo.png"
 
 const Login = () => {
-  const { logUser, isLogged } = useContext(AuthContext)
+  const { logUser, isAuthenticated } = useContext(AuthContext)
   const [user, setUser] = useState("")
 
   const handlerLogin = async (e) => {
@@ -16,12 +16,15 @@ const Login = () => {
     }
   }
 
-  if (isLogged) {
+  if (isAuthenticated) {
     return <Redirect to="/chat" />
   } else {
     return (
       <>
-        <div className="h-100 d-flex flex-column justify-content-center">
+        <div
+          className="d-flex flex-column justify-content-center"
+          style={{ height: 90 + "vh" }}
+        >
           <div className="row" style={{ marginBottom: 70 }}>
             <div className="col-md text-center">
               <img src={logo} width={120} alt="logo" />
@@ -44,13 +47,13 @@ const Login = () => {
               </form>
             </div>
           </div>
-          {/* <div className="row">
+          <div className="row">
             <div className="col-md text-center mt-4">
               <Link to="/register" className="text-secondary">
                 Don't have an account? Register.
               </Link>
             </div>
-          </div> */}
+          </div>
         </div>
       </>
     )

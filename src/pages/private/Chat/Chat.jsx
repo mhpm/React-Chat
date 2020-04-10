@@ -9,7 +9,7 @@ import Button from "components/Button"
 
 const Display = styled.div`
   width: 100%;
-  height: 500px;
+  height: 75vh;
   padding: 30px;
   background-color: #f0f0f0;
   border-radius: 8px;
@@ -49,9 +49,12 @@ const Chat = () => {
   }
 
   return (
-    <div className="h-100 d-flex justify-content-center w-100">
-      <div className="row mt-5" style={{ width: 100 + "%" }}>
-        <div className="col-md">
+    <div
+      className="d-flex justify-content-center w-100"
+      style={{ height: 90 + "vh" }}
+    >
+      <div className="row mt-5 " style={{ width: 100 + "%" }}>
+        <div className="col-md d-flex flex-column align-items-stretch">
           <div className="row">
             <div className="col-md">
               <Display id="display">
@@ -59,23 +62,21 @@ const Chat = () => {
               </Display>
             </div>
           </div>
-          <form onSubmit={sendMessage} className="pt-4 mb-5">
-            <div className="row">
-              <div className="col-md-10 col-sm-10">
-                <div className="form-group">
-                  <Input
-                    type="text"
-                    value={message}
-                    placeholder="Type message..."
-                    onChange={(e) => setMessage(e.target.value)}
-                  />
-                </div>
+          <form onSubmit={sendMessage} className="pt-4 mb-5 row">
+            <div className="col-md-10 col-sm-10">
+              <div className="form-group">
+                <Input
+                  type="text"
+                  value={message}
+                  placeholder="Type message..."
+                  onChange={(e) => setMessage(e.target.value)}
+                />
               </div>
-              <div className="col">
-                <Button primary>
-                  <i className="fas fa-paper-plane fa-sm"></i>
-                </Button>
-              </div>
+            </div>
+            <div className="col">
+              <Button primary>
+                <i className="fas fa-paper-plane fa-sm"></i>
+              </Button>
             </div>
           </form>
         </div>
