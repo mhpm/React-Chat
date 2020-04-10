@@ -9,8 +9,6 @@ import Register from "pages/public/Register/Register"
 import Header from "components/Header"
 import "./App.css"
 
-const path = process.env.NODE_ENV === "production" ? "/react-chat/" : "/"
-
 const App = () => {
   return (
     <BrowserRouter>
@@ -18,16 +16,16 @@ const App = () => {
         <Header />
         <div className="container">
           <Switch>
-            <Route exact path={path} component={Login}></Route>
-            <Route path={`${path}register`} component={Register}></Route>
-            <ProtectedRoute
-              path={`${path}chat`}
-              component={Chat}
-            ></ProtectedRoute>
-            <ProtectedRoute
-              path={`${path}users`}
-              component={Users}
-            ></ProtectedRoute>
+            <Route
+              exact
+              path={
+                process.env.NODE_ENV === "production" ? "/react-chat/" : "/"
+              }
+              component={Login}
+            ></Route>
+            <Route path="/register" component={Register}></Route>
+            <ProtectedRoute path="/chat" component={Chat}></ProtectedRoute>
+            <ProtectedRoute path="/users" component={Users}></ProtectedRoute>
           </Switch>
         </div>
       </AuthState>
