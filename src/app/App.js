@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter, Route, Switch } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import AuthState from "context/auth/authState"
 import ProtectedRoute from "components/ProtectedRoute"
 import Chat from "pages/private/Chat/Chat"
@@ -11,25 +11,21 @@ import "./App.css"
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <AuthState>
-        <Header />
-        <div className="container">
-          <Switch>
-            <Route
-              exact
-              path={
-                process.env.NODE_ENV === "production" ? "/react-chat/" : "/"
-              }
-              component={Login}
-            ></Route>
-            <Route path="/register" component={Register}></Route>
-            <ProtectedRoute path="/chat" component={Chat}></ProtectedRoute>
-            <ProtectedRoute path="/users" component={Users}></ProtectedRoute>
-          </Switch>
-        </div>
-      </AuthState>
-    </BrowserRouter>
+    <AuthState>
+      <Header />
+      <div className="container">
+        <Switch>
+          <Route
+            exact
+            path={process.env.NODE_ENV === "production" ? "/react-chat/" : "/"}
+            component={Login}
+          ></Route>
+          <Route path="/register" component={Register}></Route>
+          <ProtectedRoute path="/chat" component={Chat}></ProtectedRoute>
+          <ProtectedRoute path="/users" component={Users}></ProtectedRoute>
+        </Switch>
+      </div>
+    </AuthState>
   )
 }
 
